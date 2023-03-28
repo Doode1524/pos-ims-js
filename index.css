@@ -1,0 +1,22 @@
+.pos-wrapper {
+  display: flex;
+}
+
+.pos-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+#checkout-btn {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+h4 {
+  margin-bottom: 5px;
+}
+
+button {
+  width: 75px;
+}
