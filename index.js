@@ -124,3 +124,10 @@ generatePOSItems();
 // Checkout should update all of the counts for each product in the cart
 // and make sure we update the order list too
 // the checkout button has an id of "checkout-btn"
+
+
+const fuckGithub = () => {
+    console.log("github fucking sux")
+}
+
+fuckGithub()
