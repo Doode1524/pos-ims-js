@@ -39,10 +39,10 @@ const brothersWar = {
 };
 
 const boosters = [phyrexia, dominaria, strixhaven, zendikar, brothersWar];
-
+const orderList = [];
+const cart = [];
 // orderList should be an array of objects, with the keys of "productId", and "orderCount"
 // only include items that need to be ordered
-const orderList = [];
 
 // createOrderList should take in an array of ALL products
 // determine which products need to be re-upped and add them
@@ -95,7 +95,7 @@ const generatePOSItems = () => {
     button.innerText = "Add";
 
     button.addEventListener("click", () => {
-      console.log(booster)
+      console.log(booster);
       // YOU WILL NEED TO ADD CODE HERE
       // NOTE: this button currently has context for
       // the booster variable from the forEach() scope
@@ -109,7 +109,7 @@ const generatePOSItems = () => {
       } else {
         productInCart.quantity += 1;
       }
-      console.log(cart)
+      console.log(cart);
     });
 
     posItems.append(h4);
