@@ -99,6 +99,17 @@ const generatePOSItems = () => {
       // YOU WILL NEED TO ADD CODE HERE
       // NOTE: this button currently has context for
       // the booster variable from the forEach() scope
+      const item = { booster, quantity: 1 };
+      const productInCart = cart.find(
+        (cartProduct) => cartProduct.booster.id === item.booster.id
+      );
+
+      if (productInCart === undefined) {
+        cart.push(item);
+      } else {
+        productInCart.quantity += 1;
+      }
+      console.log(cart)
     });
 
     posItems.append(h4);
