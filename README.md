@@ -11,7 +11,7 @@ When done:
 
 - `git add .` to add all files, or
 - `git add file-name` to add an individual file
-- `git commit -m descriptive-commit-message`
+- `git commit -m "descriptive-commit-message"` message is in quotes
 
 If it is the first time you are pushing changes to the new branch:
 - `git push --set-upstream origin branch-name`, else just run
