@@ -40,7 +40,7 @@ const brothersWar = {
 
 const boosters = [phyrexia, dominaria, strixhaven, zendikar, brothersWar];
 const orderList = [];
-const guestCart = [];
+let guestCart = [];
 // orderList should be an array of objects, with the keys of "productId", and "orderCount"
 // only include items that need to be ordered
 
@@ -128,11 +128,22 @@ const addItemToGuestCart = (booster) => {
 };
 
 const cancelOrder = () => {
-  guestCart.length = 0;
+  guestCart = [];
   console.log(guestCart);
-}
+};
 
 document.getElementById("cancel-btn").addEventListener("click", cancelOrder);
+
+const checkout = () => {
+  guestCart.forEach((item) => {
+    updateProduct(item, item.quantity, boosters);
+  });
+  guestCart = [];
+  console.log(boosters)
+};
+
+document.getElementById("checkout-btn").addEventListener("click", checkout);
+
 // 2: The remove button should remove items from the guestCart
 // In both the <ul> and in the array
 
