@@ -39,10 +39,10 @@ const brothersWar = {
 };
 
 const boosters = [phyrexia, dominaria, strixhaven, zendikar, brothersWar];
-
+const orderList = [];
+let guestCart = [];
 // orderList should be an array of objects, with the keys of "productId", and "orderCount"
 // only include items that need to be ordered
-const orderList = [];
 
 // createOrderList should take in an array of ALL products
 // determine which products need to be re-upped and add them
@@ -95,10 +95,11 @@ const generatePOSItems = () => {
     button.innerText = "Add";
 
     button.addEventListener("click", () => {
-      console.log(booster)
+      // console.log(booster);
       // YOU WILL NEED TO ADD CODE HERE
       // NOTE: this button currently has context for
       // the booster variable from the forEach() scope
+      addItemToGuestCart(booster);
     });
 
     posItems.append(h4);
@@ -108,12 +109,47 @@ const generatePOSItems = () => {
 
 generatePOSItems();
 
-// 1: Clicking on an Add button should add items to the cart
-// Cart is a <ul> with an id of "cart-items"
-// I would suggest creating an empty cart array like orderList
+// 1: Clicking on an Add button should add items to the guestCart
+// Cart is a <ul> with an id of "guestCart-items"
+// I would suggest creating an empty guestCart array like orderList
 // When populating the <ul> with items, be sure to add a button to remove
+const addItemToGuestCart = (booster) => {
+  const item = { booster, quantity: 1 };
+  const productInCart = guestCart.find(
+    (cartProduct) => cartProduct.booster.id === booster.id
+  );
 
-// 2: The remove button should remove items from the cart
+  if (productInCart === undefined) {
+    guestCart.push(item);
+  } else {
+    productInCart.quantity += 1;
+  }
+  console.log(guestCart);
+};
+
+const cancelOrder = () => {
+  guestCart = [];
+  console.log(guestCart);
+};
+
+document.getElementById("cancel-btn").addEventListener("click", cancelOrder);
+
+const checkout = () => {
+  let i = 0;
+  while (i < guestCart.length) {
+    const { booster, quantity } = guestCart[i];
+    updateProduct(booster, quantity, boosters);
+    i++;
+    guestCart.splice(i, 1);
+
+    console.log(boosters);
+    console.log(quantity);
+  }
+};
+
+document.getElementById("checkout-btn").addEventListener("click", checkout);
+
+// 2: The remove button should remove items from the guestCart
 // In both the <ul> and in the array
 
 // 3: obviously, the cancel should do the same thing
@@ -121,6 +157,6 @@ generatePOSItems();
 // the cancel button has an id of "cancel-btn"
 
 // 4: Checkout will be the trickiest
-// Checkout should update all of the counts for each product in the cart
+// Checkout should update all of the counts for each product in the guestCart
 // and make sure we update the order list too
 // the checkout button has an id of "checkout-btn"
