@@ -127,7 +127,12 @@ const addItemToGuestCart = (booster) => {
   console.log(guestCart);
 };
 
+const cancelOrder = () => {
+  guestCart.length = 0;
+  console.log(guestCart);
+}
 
+document.getElementById("cancel-btn").addEventListener("click", cancelOrder);
 // 2: The remove button should remove items from the guestCart
 // In both the <ul> and in the array
 
