@@ -135,11 +135,16 @@ const cancelOrder = () => {
 document.getElementById("cancel-btn").addEventListener("click", cancelOrder);
 
 const checkout = () => {
-  guestCart.forEach((item) => {
-    updateProduct(item, item.quantity, boosters);
-  });
-  guestCart = [];
-  console.log(boosters)
+  let i = 0;
+  while (i < guestCart.length) {
+    const { booster, quantity } = guestCart[i];
+    updateProduct(booster, quantity, boosters);
+    i++;
+    guestCart.splice(i, 1);
+
+    console.log(boosters);
+    console.log(quantity);
+  }
 };
 
 document.getElementById("checkout-btn").addEventListener("click", checkout);
