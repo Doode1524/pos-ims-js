@@ -91,25 +91,11 @@ const generatePOSItems = () => {
     const h4 = document.createElement("h4");
     const button = document.createElement("button");
 
-    const addItemToGuestCart = (booster) => {
-      const item = { booster, quantity: 1 };
-      const productInCart = guestCart.find(
-        (cartProduct) => cartProduct.booster.id === booster.id
-      );
-
-      if (productInCart === undefined) {
-        guestCart.push(item);
-      } else {
-        productInCart.quantity += 1;
-      }
-      console.log(guestCart);
-    };
-
     h4.innerText = booster.displayName;
     button.innerText = "Add";
 
     button.addEventListener("click", () => {
-     // console.log(booster);
+      // console.log(booster);
       // YOU WILL NEED TO ADD CODE HERE
       // NOTE: this button currently has context for
       // the booster variable from the forEach() scope
@@ -127,6 +113,20 @@ generatePOSItems();
 // Cart is a <ul> with an id of "guestCart-items"
 // I would suggest creating an empty guestCart array like orderList
 // When populating the <ul> with items, be sure to add a button to remove
+const addItemToGuestCart = (booster) => {
+  const item = { booster, quantity: 1 };
+  const productInCart = guestCart.find(
+    (cartProduct) => cartProduct.booster.id === booster.id
+  );
+
+  if (productInCart === undefined) {
+    guestCart.push(item);
+  } else {
+    productInCart.quantity += 1;
+  }
+  console.log(guestCart);
+};
+
 
 // 2: The remove button should remove items from the guestCart
 // In both the <ul> and in the array
