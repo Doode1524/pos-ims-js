@@ -40,7 +40,7 @@ const brothersWar = {
 
 const boosters = [phyrexia, dominaria, strixhaven, zendikar, brothersWar];
 const orderList = [];
-const cart = [];
+const guestCart = [];
 // orderList should be an array of objects, with the keys of "productId", and "orderCount"
 // only include items that need to be ordered
 
@@ -91,25 +91,29 @@ const generatePOSItems = () => {
     const h4 = document.createElement("h4");
     const button = document.createElement("button");
 
+    const addItemToGuestCart = () => {
+      const item = { booster, quantity: 1 };
+      const productInCart = guestCart.find(
+        (cartProduct) => cartProduct.booster.id === booster.id
+      );
+
+      if (productInCart === undefined) {
+        guestCart.push(item);
+      } else {
+        productInCart.quantity += 1;
+      }
+      console.log(guestCart);
+    };
+
     h4.innerText = booster.displayName;
     button.innerText = "Add";
 
     button.addEventListener("click", () => {
-      console.log(booster);
+     // console.log(booster);
       // YOU WILL NEED TO ADD CODE HERE
       // NOTE: this button currently has context for
       // the booster variable from the forEach() scope
-      const item = { booster, quantity: 1 };
-      const productInCart = cart.find(
-        (cartProduct) => cartProduct.booster.id === item.booster.id
-      );
-
-      if (productInCart === undefined) {
-        cart.push(item);
-      } else {
-        productInCart.quantity += 1;
-      }
-      console.log(cart);
+      addItemToGuestCart(booster);
     });
 
     posItems.append(h4);
@@ -119,12 +123,12 @@ const generatePOSItems = () => {
 
 generatePOSItems();
 
-// 1: Clicking on an Add button should add items to the cart
-// Cart is a <ul> with an id of "cart-items"
-// I would suggest creating an empty cart array like orderList
+// 1: Clicking on an Add button should add items to the guestCart
+// Cart is a <ul> with an id of "guestCart-items"
+// I would suggest creating an empty guestCart array like orderList
 // When populating the <ul> with items, be sure to add a button to remove
 
-// 2: The remove button should remove items from the cart
+// 2: The remove button should remove items from the guestCart
 // In both the <ul> and in the array
 
 // 3: obviously, the cancel should do the same thing
@@ -132,6 +136,6 @@ generatePOSItems();
 // the cancel button has an id of "cancel-btn"
 
 // 4: Checkout will be the trickiest
-// Checkout should update all of the counts for each product in the cart
+// Checkout should update all of the counts for each product in the guestCart
 // and make sure we update the order list too
 // the checkout button has an id of "checkout-btn"
