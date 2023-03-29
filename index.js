@@ -91,7 +91,7 @@ const generatePOSItems = () => {
     const h4 = document.createElement("h4");
     const button = document.createElement("button");
 
-    const addItemToGuestCart = () => {
+    const addItemToGuestCart = (booster) => {
       const item = { booster, quantity: 1 };
       const productInCart = guestCart.find(
         (cartProduct) => cartProduct.booster.id === booster.id
